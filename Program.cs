@@ -79,10 +79,15 @@ app.UseRouting();
 app.UseAuthorization();
 
 // تغيير هنا لتعيين الصفحة الرئيسية بشكل صحيح
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=about}/{id?}"
+//);
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=about}/{id?}"
+    pattern: "{controller=Home}/{action=Index}/{id?}"
 );
+
 
 // تأكد من إضافة MapRazorPages إذا كنت تستخدم Razor Pages
 app.UseEndpoints(endpoints => endpoints.MapRazorPages());

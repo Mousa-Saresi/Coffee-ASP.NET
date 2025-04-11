@@ -24,6 +24,11 @@ namespace Coffee_Shop2.Controllers
         {
             return View();
         }
+        public IActionResult Index()
+        {
+            return RedirectToAction("about");
+        }
+
         [Authorize]
         public IActionResult menu()
         {
