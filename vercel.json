@@ -1,0 +1,14 @@
+﻿{
+    "builds": [
+        {
+            "src": "Dockerfile.txt",
+            "use": "@vercel/docker"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ]
+}

@@ -61,6 +61,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CoffeeDbContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("MyConn")
 ));
+//new
+builder.WebHost.UseUrls("http://*:80");
+
 
 var app = builder.Build();
 
