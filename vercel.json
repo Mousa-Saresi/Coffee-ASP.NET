@@ -1,7 +1,9 @@
 {
-    "build": {
-        "docker": {
-            "image": "mousa1993/coffee-restaurant:latest"
+    "version": 2,
+    "builds": [
+        {
+            "src": "Dockerfile",
+            "use": "@vercel/docker"
         }
-    }
+    ]
 }
