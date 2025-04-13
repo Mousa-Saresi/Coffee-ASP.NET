@@ -48,22 +48,22 @@ using Microsoft.EntityFrameworkCore;
 using Coffee_Shop2.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("Coffee_Shop2ContextConnection")
-    ?? throw new InvalidOperationException("Connection string 'Coffee_Shop2ContextConnection' not found.");
+//var connectionString = builder.Configuration.GetConnectionString("Coffee_Shop2ContextConnection")
+  //  ?? throw new InvalidOperationException("Connection string 'Coffee_Shop2ContextConnection' not found.");
 
-builder.Services.AddDbContext<Coffee_Shop2Context>(options =>
-    options.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<Coffee_Shop2Context>(options =>
+  //  options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
-    options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<Coffee_Shop2Context>();
+//builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+  //  options.SignIn.RequireConfirmedAccount = true)
+    //.AddEntityFrameworkStores<Coffee_Shop2Context>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // Add services for SQL Server.
-builder.Services.AddDbContext<CoffeeDbContext>(option =>
-    option.UseSqlServer(builder.Configuration.GetConnectionString("MyConn")));
+//builder.Services.AddDbContext<CoffeeDbContext>(option =>
+  //  option.UseSqlServer(builder.Configuration.GetConnectionString("MyConn")));
 
 // Add services for Razor Pages (if used)
 builder.Services.AddRazorPages();
@@ -94,6 +94,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 // Map Razor Pages (if used)
-app.MapRazorPages();
+//app.MapRazorPages();
 
 app.Run();
