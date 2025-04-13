@@ -29,23 +29,23 @@ namespace Coffee_Shop2.Controllers
             return RedirectToAction("about");
         }
 
-        [Authorize]
+      
         public IActionResult menu()
         {
             return View();
         }
-        [Authorize]
+       
         public IActionResult service()
         {
             return View();
         }
 
-        [Authorize]
+        
         public IActionResult testimonil()
         {
             return View();
         }
-        [Authorize]
+      
         [HttpGet]
         public IActionResult reservation()
         {
