@@ -48,22 +48,25 @@ using Microsoft.EntityFrameworkCore;
 using Coffee_Shop2.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("Coffee_Shop2ContextConnection") ?? throw new InvalidOperationException("Connection string 'Coffee_Shop2ContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("Coffee_Shop2ContextConnection")
+    ?? throw new InvalidOperationException("Connection string 'Coffee_Shop2ContextConnection' not found.");
 
-builder.Services.AddDbContext<Coffee_Shop2Context>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<Coffee_Shop2Context>(options =>
+    options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Coffee_Shop2Context>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+    options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<Coffee_Shop2Context>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // Add services for SQL Server.
-builder.Services.AddDbContext<CoffeeDbContext>(option => option.UseSqlServer(
-    builder.Configuration.GetConnectionString("MyConn")
-));
-//new
-builder.WebHost.UseUrls("http://*:80");
+builder.Services.AddDbContext<CoffeeDbContext>(option =>
+    option.UseSqlServer(builder.Configuration.GetConnectionString("MyConn")));
 
+// Add services for Razor Pages (if used)
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -74,25 +77,23 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Redirect HTTP to HTTPS
 app.UseHttpsRedirection();
+
+// Serve static files (e.g., CSS, images)
 app.UseStaticFiles();
 
+// Set up routing for controllers
 app.UseRouting();
 
 app.UseAuthorization();
 
-// تغيير هنا لتعيين الصفحة الرئيسية بشكل صحيح
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=about}/{id?}"
-//);
+// Map the default controller route
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}"
-);
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
-
-// تأكد من إضافة MapRazorPages إذا كنت تستخدم Razor Pages
-app.UseEndpoints(endpoints => endpoints.MapRazorPages());
+// Map Razor Pages (if used)
+app.MapRazorPages();
 
 app.Run();
