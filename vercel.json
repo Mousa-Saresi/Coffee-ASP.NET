@@ -1,0 +1,7 @@
+{
+    "build": {
+        "docker": {
+            "image": "mousa1993/coffee-restaurant:latest"
+        }
+    }
+}
